@@ -51,7 +51,7 @@ const Carousel = () => {
                 playsInline
                 style={{
                   width: "100%",
-                  height: "600px",
+                  height: "700px",
                   objectFit: "cover",
                   borderRadius: "1rem",
                 }}
