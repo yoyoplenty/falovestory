@@ -26,7 +26,7 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@types/react-select": "^4.2.0",
+    "@types/react-select": "^5.0.1",
     "eslint": "9.x",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "^7.0.1",
