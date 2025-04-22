@@ -71,7 +71,7 @@ const Carousel = () => {
 
 export const Home = () => {
   return (
-    <Box bg="gray.50" textAlign="center" py={10} px={4} minH="100vh">
+    <Box bg="gray.250" textAlign="center" py={10} px={4} minH="100vh">
       {/* Hero Section with Theme */}
       <Box mb={12} maxW="800px" mx="auto">
         <Heading
