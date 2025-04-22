@@ -1,15 +1,16 @@
 import React from "react";
-import { Box, Image, Text, Grid, VStack, Heading, Divider, Stack } from "@chakra-ui/react";
+import { Box, Image, Text, Grid, VStack, Heading, Divider, Stack, Icon } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
 import { people } from "../data/people";
-import { galleryImages, images } from "../data/gallery";
+import { FaHeart } from "react-icons/fa";
+import { coupleImages, galleryImages, images } from "../data/gallery";
 
 const MotionBox = motion(Box);
 
 const ThemeTag: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <Text as="span" color="teal.500" fontWeight="bold" fontStyle="bold" textTransform="uppercase">
+  <Text as="span" color="white.500" fontWeight="bold" fontStyle="bold" textTransform="uppercase">
     {children}
   </Text>
 );
@@ -22,11 +23,11 @@ const Carousel = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
   };
 
   return (
-    <Box mb={12} maxW="1500px" mx="auto" borderRadius="xl" overflow="hidden" position="relative">
+    <Box mb={9} maxW="1500px" mx="auto" borderRadius="xl" overflow="hidden" position="relative">
       <Box position="absolute" top="0" left="0" right="0" textAlign="center" zIndex="1" pt={4}>
         <Heading
           fontSize={{ base: "xl", md: "3xl" }}
@@ -37,17 +38,28 @@ const Carousel = () => {
           Our <ThemeTag>FALOVESTORY</ThemeTag> Journey
         </Heading>
       </Box>
+
       <Slider {...settings}>
-        {images.map((image, index) => (
+        {coupleImages.map((item, index) => (
           <Box key={index} position="relative">
-            <Image
-              src={image.src}
-              alt={`Slide ${index}`}
-              objectFit="cover"
-              w="100%"
-              h={{ base: "700px", md: "700px" }}
-              borderRadius="xl"
-            />
+            {item.type === "video" ? (
+              <video
+                src={item.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{
+                  width: "100%",
+                  height: "600px",
+                  objectFit: "cover",
+                  borderRadius: "1rem",
+                }}
+              />
+            ) : (
+              <Image src={item.src} alt={`Slide ${index}`} objectFit="cover" w="100%" h="700px" borderRadius="xl" />
+            )}
+
             <Box
               position="absolute"
               bottom="0"
@@ -59,12 +71,60 @@ const Carousel = () => {
               textAlign="center"
             >
               <Text fontSize="lg" fontWeight="bold">
-                {image.caption}
+                {item.caption}
               </Text>
             </Box>
           </Box>
         ))}
       </Slider>
+    </Box>
+  );
+};
+
+const LoveStoryCard = () => {
+  return (
+    <Box
+      mb={12}
+      maxW="7xl"
+      mx="auto"
+      bgGradient="linear(to-br, pink.50, pink.100)"
+      boxShadow="2xl"
+      borderRadius="2xl"
+      p={{ base: 6, md: 10 }}
+      position="relative"
+    >
+      <Icon
+        as={FaHeart}
+        color="pink.300"
+        w={10}
+        h={10}
+        position="absolute"
+        top={-5}
+        left={-5}
+        bg="white"
+        borderRadius="full"
+        boxShadow="md"
+      />
+      <VStack spacing={6} textAlign="center">
+        <Heading fontSize={{ base: "2xl", md: "3xl" }} color="pink.600">
+          Our <ThemeTag>FALOVESTORY</ThemeTag>
+        </Heading>
+        <Text fontSize="lg" color="gray.600" lineHeight="2">
+          I met Fati in late October 2018 back in university. We both attended OOU. On that faithful evening, I was
+          driving out with my friends, and she was walking with hers. <ThemeTag>FALOVESTORY</ThemeTag> While the guys
+          chatted with her friends, she stood alone with a straight face. I boldly approached her. We talked, exchanged
+          numbers (after some struggle), and started texting. We officially began dating in February 2019.
+          <br />
+          <br />
+          Through those early chats, we discovered our values, our backgrounds, and what truly mattered to each of us.
+          It felt different — I’m Christian, she’s Muslim — but love saw beyond that. I saw every quality I ever wanted
+          in my woman, and I went all out for her.
+          <br />
+          <br />
+          It hasn’t always been smooth, but we stayed true to our promises. Our love carried us through. Today, we’re
+          each other’s better halves — forever. <ThemeTag>FALOVESTORY</ThemeTag> 💖
+        </Text>
+      </VStack>
     </Box>
   );
 };
@@ -93,17 +153,11 @@ export const Home = () => {
         </Heading>
       </Box>
 
-      {/* Couple Details Section */}
-      <Box mb={12} maxW="800px" mx="auto">
-        <Text fontSize="lg" color="gray.600" lineHeight="1.8">
-          John and Jane met five years ago and have been writing their <ThemeTag>FALOVESTORY</ThemeTag> ever since.
-          Their journey is one of laughter, adventure, and shared dreams. Join us in celebrating the next chapter of
-          their <ThemeTag>FALOVESTORY</ThemeTag>!
-        </Text>
-      </Box>
-
       {/* Carousel */}
       <Carousel />
+
+      {/* Couple Details Section */}
+      <LoveStoryCard />
 
       <Divider my={12} borderColor="teal.300" />
 
@@ -315,7 +369,7 @@ export const Home = () => {
             boxShadow="lg"
             position="relative"
           >
-            <Image src={image.src} alt={`Gallery ${image.id}`} borderRadius="md" objectFit="cover" w="100%" h="700px" />
+            <Image src={image.src} alt={`Gallery ${image.id}`} borderRadius="md" objectFit="cover" w="100%" h="600px" />
             <Box
               position="absolute"
               bottom="0"
