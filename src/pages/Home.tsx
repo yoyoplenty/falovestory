@@ -145,7 +145,7 @@ export const Home = () => {
                 borderRadius="md"
                 objectFit="cover"
                 w="100%"
-                h="700px"
+                h="600px"
                 border="4px solid"
                 borderColor="teal.100"
               />
