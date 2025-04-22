@@ -1,0 +1,198 @@
+import React from "react";
+import { Box, Image, Text, Grid, VStack, Heading, Divider, Stack } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import Slider from "react-slick";
+import { people } from "../data/people";
+
+const MotionBox = motion(Box);
+
+const Carousel = () => {
+  const images = [
+    "https://picsum.photos/800/1200?random=1",
+    "https://picsum.photos/800/1200?random=2",
+    "https://picsum.photos/800/1200?random=3",
+  ];
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
+  return (
+    <Box mb={12} maxW="1000px" mx="auto" borderRadius="xl" overflow="hidden">
+      <Slider {...settings}>
+        {images.map((image, index) => (
+          <Box key={index}>
+            <Image
+              src={image}
+              alt={`Slide ${index}`}
+              objectFit="cover"
+              w="100%"
+              h={{ base: "400px", md: "600px" }}
+              borderRadius="xl"
+            />
+          </Box>
+        ))}
+      </Slider>
+    </Box>
+  );
+};
+
+export const Home = () => {
+  return (
+    <Box bg="gray.50" textAlign="center" py={10} px={4} minH="100vh">
+      {/* Couple Details Section */}
+      <Box mb={12} maxW="800px" mx="auto">
+        <Heading fontSize="4xl" mb={4} textTransform="uppercase" color="teal.600">
+          Meet the Couple
+        </Heading>
+        <Text fontSize="lg" color="gray.600" lineHeight="1.8">
+          John and Jane met five years ago and have been inseparable ever since. Their love story is one of laughter,
+          adventure, and shared dreams. Join us in celebrating their special day!
+        </Text>
+      </Box>
+
+      {/* Carousel */}
+      <Carousel />
+
+      <Divider my={12} borderColor="teal.300" />
+
+      {/* Groom & Bride */}
+      <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={8} mb={12} mx={18}>
+        {[people.groom, people.bride].map((person, index) => (
+          <MotionBox
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            p={10}
+            bg="white"
+            borderRadius="2xl"
+            boxShadow="lg"
+            mx={{ base: 0, md: 4 }}
+          >
+            <VStack>
+              <Heading fontSize="3xl" textTransform="uppercase" color="teal.500">
+                {index === 0 ? "Groom" : "Bride"}
+              </Heading>
+              <Image src={person.image} alt={person.name} borderRadius="md" objectFit="cover" w="100%" h="700px" />
+              <Text fontSize="xl" mt={4}>
+                {person.name}
+              </Text>
+            </VStack>
+          </MotionBox>
+        ))}
+      </Grid>
+
+      <Divider my={12} borderColor="teal.300" />
+
+      {/* Groomsmen */}
+      <Heading fontSize="3xl" textTransform="uppercase" mb={8} color="teal.600">
+        Groomsmen
+      </Heading>
+      <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }} gap={6} mb={12}>
+        {people.groomsmen.map((man, index) => (
+          <MotionBox
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            p={10}
+            bg="white"
+            borderRadius="2xl"
+            boxShadow="lg"
+          >
+            <Link to={`/person/${man.name}`}>
+              <VStack>
+                <Image src={man.image} alt={man.name} borderRadius="md" objectFit="cover" w="100%" h="500px" />
+                <Text fontWeight="bold" fontSize="lg" mt={3}>
+                  {man.name}
+                </Text>
+                <Text fontSize="sm" color="gray.500">
+                  {man.occupation}
+                </Text>
+                <Text fontSize="sm" color="teal.500">
+                  {man.social}
+                </Text>
+                <Text fontSize="sm" mt={2} color="gray.600">
+                  {man.bio}
+                </Text>
+              </VStack>
+            </Link>
+          </MotionBox>
+        ))}
+      </Grid>
+
+      <Divider my={12} borderColor="teal.300" />
+
+      {/* Bridesmaids */}
+      <Heading fontSize="3xl" textTransform="uppercase" mb={8} color="teal.600">
+        Bridesmaids
+      </Heading>
+      <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }} gap={6} mb={12}>
+        {people.bridesmaids.map((maid, index) => (
+          <MotionBox
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            p={10}
+            bg="white"
+            borderRadius="2xl"
+            boxShadow="lg"
+          >
+            <Link to={`/person/${maid.name}`}>
+              <VStack>
+                <Image src={maid.image} alt={maid.name} borderRadius="md" objectFit="cover" w="100%" h="500px" />
+                <Text fontWeight="bold" fontSize="lg" mt={3}>
+                  {maid.name}
+                </Text>
+                <Text fontSize="sm" color="gray.500">
+                  {maid.occupation}
+                </Text>
+                <Text fontSize="sm" color="teal.500">
+                  {maid.social}
+                </Text>
+                <Text fontSize="sm" mt={2} color="gray.600">
+                  {maid.bio}
+                </Text>
+              </VStack>
+            </Link>
+          </MotionBox>
+        ))}
+      </Grid>
+
+      <Divider my={12} borderColor="teal.300" />
+
+      {/* Gallery */}
+      <Heading fontSize="3xl" textTransform="uppercase" mb={8} color="teal.600">
+        Gallery
+      </Heading>
+      <Grid templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }} gap={7}>
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+          <MotionBox
+            key={num}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+            p={2}
+            bg="white"
+            borderRadius="2xl"
+            boxShadow="lg"
+          >
+            <Image
+              src={`https://picsum.photos/400/500?random=${num}`}
+              alt={`Gallery ${num}`}
+              borderRadius="md"
+              objectFit="cover"
+              w="100%"
+              h="700px"
+            />
+          </MotionBox>
+        ))}
+      </Grid>
+    </Box>
+  );
+};
