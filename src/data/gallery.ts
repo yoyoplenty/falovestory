@@ -58,9 +58,4 @@ export const coupleImages = [
     src: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745317360/IMG-20250422-WA0022_zv4xcj.jpg",
     caption: "First Trip Together",
   },
-  {
-    type: "image",
-    src: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745317367/IMG-20250422-WA0016_qzgvao.jpg",
-    caption: "The Proposal Moment",
-  },
 ];
