@@ -152,7 +152,7 @@ const LoveStoryCard = () => {
 export const Home = () => {
   const gridColumns = useBreakpointValue({ base: 1, sm: 2, md: 2, lg: 4 });
   const personImageHeight = useBreakpointValue({ base: "300px", sm: "400px", md: "500px", lg: "600px" });
-  const galleryImageHeight = useBreakpointValue({ base: "250px", sm: "300px", md: "400px", lg: "500px" });
+  const galleryImageHeight = useBreakpointValue({ base: "300px", sm: "400px", md: "500px", lg: "550px" });
 
   return (
     <Box bg="gray.50" textAlign="center" py={{ base: 6, md: 10 }} px={{ base: 2, md: 4 }} minH="100vh">
@@ -186,7 +186,7 @@ export const Home = () => {
       <Divider my={{ base: 8, md: 12 }} borderColor="teal.300" />
 
       {/* Groom & Bride */}
-      <Grid
+      {/* <Grid
         templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
         gap={{ base: 6, md: 8 }}
         mb={{ base: 8, md: 12 }}
@@ -243,6 +243,121 @@ export const Home = () => {
             </VStack>
           </MotionBox>
         ))}
+      </Grid> */}
+
+      <Grid
+        templateColumns={{ base: "1fr", md: "1fr auto 1fr" }}
+        gap={{ base: 6, md: 4 }}
+        mb={{ base: 8, md: 12 }}
+        px={{ base: 4, md: 8 }}
+        alignItems="center"
+      >
+        {/* Groom Card */}
+        <MotionBox
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.3 }}
+          p={{ base: 4, md: 6 }}
+          bg="white"
+          borderRadius="2xl"
+          boxShadow="md"
+          mx="auto"
+          w="100%"
+          maxW="600px"
+        >
+          <Box
+            position="absolute"
+            top="-3"
+            right="-3"
+            bg="teal.500"
+            color="white"
+            px={3}
+            py={1}
+            borderRadius="md"
+            fontSize="sm"
+            fontWeight="bold"
+            display={{ base: "none", md: "block" }}
+          >
+            <ThemeTag>FALOVESTORY</ThemeTag>
+          </Box>
+          <VStack spacing={{ base: 3, md: 4 }}>
+            <Heading fontSize={{ base: "xl", md: "2xl", lg: "3xl" }} textTransform="uppercase" color="teal.500">
+              Groom
+            </Heading>
+            <Image
+              src={people.groom.image} // Make sure this path is correct
+              alt={people.groom.name}
+              borderRadius="md"
+              objectFit="cover"
+              w="100%"
+              h={{ base: "300px", md: "400px", lg: "500px" }}
+              border="4px solid"
+              borderColor="teal.100"
+              fallbackSrc="/fallback-image.jpg" // Add a fallback image
+            />
+            <Text fontSize={{ base: "lg", md: "xl" }} mt={2} fontWeight="bold">
+              {people.groom.name}
+            </Text>
+            <Text fontSize={{ base: "xs", md: "sm" }} color="teal.500" fontStyle="italic">
+              Co-author of our <ThemeTag>FALOVESTORY</ThemeTag>
+            </Text>
+          </VStack>
+        </MotionBox>
+
+        {/* Heart Icon */}
+        <Box display={{ base: "none", md: "flex" }} justifyContent="center" alignItems="center" px={2}>
+          <Icon as={FaHeart} color="pink.500" w={16} h={16} filter="drop-shadow(0 2px 4px rgba(0,0,0,0.2))" />
+        </Box>
+
+        {/* Bride Card */}
+        <MotionBox
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.3 }}
+          p={{ base: 4, md: 6 }}
+          bg="white"
+          borderRadius="2xl"
+          boxShadow="md"
+          mx="auto"
+          w="100%"
+          maxW="600px"
+        >
+          <Box
+            position="absolute"
+            top="-3"
+            left="-3" // Changed from right to left for bride
+            bg="teal.500"
+            color="white"
+            px={3}
+            py={1}
+            borderRadius="md"
+            fontSize="sm"
+            fontWeight="bold"
+            display={{ base: "none", md: "block" }}
+          >
+            <ThemeTag>FALOVESTORY</ThemeTag>
+          </Box>
+          <VStack spacing={{ base: 3, md: 4 }}>
+            <Heading fontSize={{ base: "xl", md: "2xl", lg: "3xl" }} textTransform="uppercase" color="teal.500">
+              Bride
+            </Heading>
+            <Image
+              src={people.bride.image} // Make sure this path is correct
+              alt={people.bride.name}
+              borderRadius="md"
+              objectFit="cover"
+              w="100%"
+              h={{ base: "300px", md: "400px", lg: "500px" }}
+              border="4px solid"
+              borderColor="teal.100"
+              fallbackSrc="/fallback-image.jpg" // Add a fallback image
+            />
+            <Text fontSize={{ base: "lg", md: "xl" }} mt={2} fontWeight="bold">
+              {people.bride.name}
+            </Text>
+            <Text fontSize={{ base: "xs", md: "sm" }} color="teal.500" fontStyle="italic">
+              Co-author of our <ThemeTag>FALOVESTORY</ThemeTag>
+            </Text>
+          </VStack>
+        </MotionBox>
       </Grid>
 
       <Divider my={{ base: 8, md: 12 }} borderColor="teal.300" />
