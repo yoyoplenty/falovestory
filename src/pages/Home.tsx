@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Slider from "react-slick";
 import { people } from "../data/people";
 import { FaHeart } from "react-icons/fa";
-import { coupleImages, galleryImages, images } from "../data/gallery";
+import { coupleImages, galleryImages } from "../data/gallery";
 
 const MotionBox = motion(Box);
 
@@ -19,11 +19,11 @@ const Carousel = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 100,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 10000,
   };
 
   return (
@@ -276,7 +276,7 @@ export const Home = () => {
                   {man.social}
                 </Text>
                 <Text fontSize="sm" mt={2} color="gray.600">
-                  {man.bio}
+                  {man.relationship}
                 </Text>
               </VStack>
             </Link>
@@ -339,7 +339,7 @@ export const Home = () => {
                   {maid.social}
                 </Text>
                 <Text fontSize="sm" mt={2} color="gray.600">
-                  {maid.bio}
+                  {maid.relationship}
                 </Text>
               </VStack>
             </Link>

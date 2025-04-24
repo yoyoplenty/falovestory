@@ -70,7 +70,7 @@ export const PersonDetail = () => {
               {person.occupation}
             </Text>
             <Text fontSize="md" px={4} color="teal.600">
-              {person.bio}
+              {person.relationship}
             </Text>
             <Text fontSize="sm" color="gray.900">
               {person.social}
