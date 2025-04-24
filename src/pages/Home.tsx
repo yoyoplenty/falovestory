@@ -289,7 +289,7 @@ export const Home = () => {
               borderRadius="md"
               objectFit="cover"
               w="100%"
-              h={{ base: "300px", md: "400px", lg: "500px" }}
+              h={{ base: "300px", md: "400px", lg: "600px" }}
               border="4px solid"
               borderColor="teal.100"
               fallbackSrc="/fallback-image.jpg" // Add a fallback image
@@ -345,7 +345,7 @@ export const Home = () => {
               borderRadius="md"
               objectFit="cover"
               w="100%"
-              h={{ base: "300px", md: "400px", lg: "500px" }}
+              h={{ base: "300px", md: "400px", lg: "600px" }}
               border="4px solid"
               borderColor="teal.100"
               fallbackSrc="/fallback-image.jpg" // Add a fallback image
