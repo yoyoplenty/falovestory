@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image, Text, Grid, VStack, Heading, Divider, Stack, Icon } from "@chakra-ui/react";
+import { Box, Image, Text, Grid, VStack, Heading, Divider, Stack, Icon, useBreakpointValue } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
@@ -16,24 +16,36 @@ const ThemeTag: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 const Carousel = () => {
+  const carouselHeight = useBreakpointValue({ base: "400px", md: "600px", lg: "700px" });
+
   const settings = {
     dots: true,
     infinite: true,
-    speed: 100,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 10000,
+    adaptiveHeight: true,
   };
 
   return (
-    <Box mb={9} maxW="1500px" mx="auto" borderRadius="xl" overflow="hidden" position="relative">
-      <Box position="absolute" top="0" left="0" right="0" textAlign="center" zIndex="1" pt={4}>
+    <Box
+      mb={{ base: 6, md: 9 }}
+      maxW="1500px"
+      mx="auto"
+      borderRadius="xl"
+      overflow="hidden"
+      position="relative"
+      px={{ base: 2, md: 0 }}
+    >
+      <Box position="absolute" top="0" left="0" right="0" textAlign="center" zIndex="1" pt={{ base: 2, md: 4 }}>
         <Heading
-          fontSize={{ base: "xl", md: "3xl" }}
+          fontSize={{ base: "lg", sm: "xl", md: "3xl" }}
           color="white"
           textShadow="0 2px 4px rgba(0,0,0,0.5)"
           textTransform="uppercase"
+          px={2}
         >
           Our <ThemeTag>FALOVESTORY</ThemeTag> Journey
         </Heading>
@@ -51,13 +63,20 @@ const Carousel = () => {
                 playsInline
                 style={{
                   width: "100%",
-                  height: "700px",
+                  height: carouselHeight,
                   objectFit: "cover",
                   borderRadius: "1rem",
                 }}
               />
             ) : (
-              <Image src={item.src} alt={`Slide ${index}`} objectFit="cover" w="100%" h="700px" borderRadius="xl" />
+              <Image
+                src={item.src}
+                alt={`Slide ${index}`}
+                objectFit="cover"
+                w="100%"
+                h={carouselHeight}
+                borderRadius={{ base: "md", md: "xl" }}
+              />
             )}
 
             <Box
@@ -66,11 +85,11 @@ const Carousel = () => {
               left="0"
               right="0"
               bg="linear-gradient(transparent, rgba(0,0,0,0.7))"
-              p={4}
+              p={{ base: 2, md: 4 }}
               color="white"
               textAlign="center"
             >
-              <Text fontSize="lg" fontWeight="bold">
+              <Text fontSize={{ base: "md", md: "lg" }} fontWeight="bold">
                 {item.caption}
               </Text>
             </Box>
@@ -84,32 +103,33 @@ const Carousel = () => {
 const LoveStoryCard = () => {
   return (
     <Box
-      mb={12}
+      mb={{ base: 8, md: 12 }}
       maxW="7xl"
       mx="auto"
       bgGradient="linear(to-br, pink.50, pink.100)"
-      boxShadow="2xl"
+      boxShadow={{ base: "md", md: "2xl" }}
       borderRadius="2xl"
-      p={{ base: 6, md: 10 }}
+      p={{ base: 4, md: 10 }}
       position="relative"
+      px={{ base: 4, md: 10 }}
     >
       <Icon
         as={FaHeart}
         color="pink.300"
-        w={10}
-        h={10}
+        w={{ base: 8, md: 10 }}
+        h={{ base: 8, md: 10 }}
         position="absolute"
-        top={-5}
-        left={-5}
+        top={{ base: -4, md: -5 }}
+        left={{ base: -4, md: -5 }}
         bg="white"
         borderRadius="full"
         boxShadow="md"
       />
-      <VStack spacing={6} textAlign="center">
-        <Heading fontSize={{ base: "2xl", md: "3xl" }} color="pink.600">
+      <VStack spacing={{ base: 4, md: 6 }} textAlign="center">
+        <Heading fontSize={{ base: "xl", md: "3xl" }} color="pink.600">
           Our <ThemeTag>FALOVESTORY</ThemeTag>
         </Heading>
-        <Text fontSize="lg" color="gray.600" lineHeight="2">
+        <Text fontSize={{ base: "md", md: "lg" }} color="gray.600" lineHeight="tall">
           I met Fati in late October 2018 back in university. We both attended OOU. On that faithful evening, I was
           driving out with my friends, and she was walking with hers. <ThemeTag>FALOVESTORY</ThemeTag> While the guys
           chatted with her friends, she stood alone with a straight face. I boldly approached her. We talked, exchanged
@@ -117,12 +137,12 @@ const LoveStoryCard = () => {
           <br />
           <br />
           Through those early chats, we discovered our values, our backgrounds, and what truly mattered to each of us.
-          It felt different — I’m Christian, she’s Muslim — but love saw beyond that. I saw every quality I ever wanted
+          It felt different — I'm Christian, she's Muslim — but love saw beyond that. I saw every quality I ever wanted
           in my woman, and I went all out for her.
           <br />
           <br />
-          It hasn’t always been smooth, but we stayed true to our promises. Our love carried us through. Today, we’re
-          each other’s better halves — forever. <ThemeTag>FALOVESTORY</ThemeTag> 💖
+          It hasn't always been smooth, but we stayed true to our promises. Our love carried us through. Today, we're
+          each other's better halves — forever. <ThemeTag>FALOVESTORY</ThemeTag> 💖
         </Text>
       </VStack>
     </Box>
@@ -130,23 +150,27 @@ const LoveStoryCard = () => {
 };
 
 export const Home = () => {
+  const gridColumns = useBreakpointValue({ base: 1, sm: 2, md: 2, lg: 4 });
+  const personImageHeight = useBreakpointValue({ base: "300px", sm: "400px", md: "500px", lg: "600px" });
+  const galleryImageHeight = useBreakpointValue({ base: "250px", sm: "300px", md: "400px", lg: "500px" });
+
   return (
-    <Box bg="gray.250" textAlign="center" py={10} px={4} minH="100vh">
+    <Box bg="gray.50" textAlign="center" py={{ base: 6, md: 10 }} px={{ base: 2, md: 4 }} minH="100vh">
       {/* Hero Section with Theme */}
-      <Box mb={12} maxW="800px" mx="auto">
+      <Box mb={{ base: 8, md: 12 }} maxW="800px" mx="auto" px={{ base: 2, md: 0 }}>
         <Heading
-          fontSize={{ base: "3xl", md: "5xl" }}
-          mb={4}
+          fontSize={{ base: "2xl", sm: "3xl", md: "5xl" }}
+          mb={{ base: 3, md: 4 }}
           color="teal.600"
           position="relative"
           _after={{
             content: '""',
             display: "block",
-            width: "100px",
-            height: "4px",
+            width: "80px",
+            height: "3px",
             bg: "teal.300",
             mx: "auto",
-            mt: 4,
+            mt: 3,
           }}
         >
           Welcome to Our <ThemeTag>FALOVESTORY</ThemeTag>
@@ -159,21 +183,27 @@ export const Home = () => {
       {/* Couple Details Section */}
       <LoveStoryCard />
 
-      <Divider my={12} borderColor="teal.300" />
+      <Divider my={{ base: 8, md: 12 }} borderColor="teal.300" />
 
       {/* Groom & Bride */}
-      <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={8} mb={12} mx={18}>
+      <Grid
+        templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
+        gap={{ base: 6, md: 8 }}
+        mb={{ base: 8, md: 12 }}
+        px={{ base: 4, md: 8 }}
+      >
         {[people.groom, people.bride].map((person, index) => (
           <MotionBox
             key={index}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.03 }}
             transition={{ duration: 0.3 }}
-            p={10}
+            p={{ base: 4, md: 6 }}
             bg="white"
             borderRadius="2xl"
-            boxShadow="lg"
-            mx={{ base: 0, md: 4 }}
-            position="relative"
+            boxShadow="md"
+            mx="auto"
+            w="100%"
+            maxW="600px"
           >
             <Box
               position="absolute"
@@ -186,11 +216,12 @@ export const Home = () => {
               borderRadius="md"
               fontSize="sm"
               fontWeight="bold"
+              display={{ base: "none", md: "block" }}
             >
               <ThemeTag>FALOVESTORY</ThemeTag>
             </Box>
-            <VStack>
-              <Heading fontSize="3xl" textTransform="uppercase" color="teal.500">
+            <VStack spacing={{ base: 3, md: 4 }}>
+              <Heading fontSize={{ base: "xl", md: "2xl", lg: "3xl" }} textTransform="uppercase" color="teal.500">
                 {index === 0 ? "Groom" : "Bride"}
               </Heading>
               <Image
@@ -199,14 +230,14 @@ export const Home = () => {
                 borderRadius="md"
                 objectFit="cover"
                 w="100%"
-                h="600px"
+                h={personImageHeight}
                 border="4px solid"
                 borderColor="teal.100"
               />
-              <Text fontSize="xl" mt={4} fontWeight="bold">
+              <Text fontSize={{ base: "lg", md: "xl" }} mt={2} fontWeight="bold">
                 {person.name}
               </Text>
-              <Text fontSize="sm" color="teal.500" fontStyle="italic">
+              <Text fontSize={{ base: "xs", md: "sm" }} color="teal.500" fontStyle="italic">
                 Co-author of our <ThemeTag>FALOVESTORY</ThemeTag>
               </Text>
             </VStack>
@@ -214,189 +245,226 @@ export const Home = () => {
         ))}
       </Grid>
 
-      <Divider my={12} borderColor="teal.300" />
+      <Divider my={{ base: 8, md: 12 }} borderColor="teal.300" />
 
       {/* Groomsmen */}
-      <Heading fontSize="3xl" textTransform="uppercase" mb={8} color="teal.600">
-        Supporting Our <ThemeTag>FALOVESTORY</ThemeTag>
-      </Heading>
-      <Text mb={8} fontSize="lg" color="gray.600">
-        The wonderful people who've been part of our <ThemeTag>FALOVESTORY</ThemeTag> journey
-      </Text>
-
-      <Heading fontSize="2xl" mb={8} color="teal.500">
-        GROOMSMEN
-      </Heading>
-      <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }} gap={6} mb={12}>
-        {people.groomsmen.map((man, index) => (
-          <MotionBox
-            key={index}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            p={6}
-            bg="white"
-            borderRadius="2xl"
-            boxShadow="lg"
-            position="relative"
-          >
-            <Box
-              position="absolute"
-              top="-2"
-              left="-2"
-              bg="teal.500"
-              color="white"
-              px={2}
-              py={1}
-              borderRadius="md"
-              fontSize="xs"
-              fontWeight="bold"
-              transform="rotate(-5deg)"
-            >
-              <ThemeTag>FALOVESTORY</ThemeTag>
-            </Box>
-            <Link to={`/person/${man.name}`}>
-              <VStack>
-                <Image
-                  src={man.image}
-                  alt={man.name}
-                  borderRadius="md"
-                  objectFit="cover"
-                  w="100%"
-                  h="500px"
-                  border="3px solid"
-                  borderColor="teal.50"
-                />
-                <Text fontWeight="bold" fontSize="lg" mt={3}>
-                  {man.name}
-                </Text>
-                <Text fontSize="sm" color="gray.500">
-                  {man.occupation}
-                </Text>
-                <Text fontSize="sm" color="teal.500">
-                  {man.social}
-                </Text>
-                <Text fontSize="sm" mt={2} color="gray.600">
-                  {man.relationship}
-                </Text>
-              </VStack>
-            </Link>
-          </MotionBox>
-        ))}
-      </Grid>
-
-      <Divider my={12} borderColor="teal.300" />
-
-      {/* Bridesmaids */}
-      <Heading fontSize="2xl" mb={8} color="teal.500">
-        BRIDESMAIDS
-      </Heading>
-      <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }} gap={6} mb={12}>
-        {people.bridesmaids.map((maid, index) => (
-          <MotionBox
-            key={index}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            p={6}
-            bg="white"
-            borderRadius="2xl"
-            boxShadow="lg"
-            position="relative"
-          >
-            <Box
-              position="absolute"
-              top="-2"
-              right="-2"
-              bg="teal.500"
-              color="white"
-              px={2}
-              py={1}
-              borderRadius="md"
-              fontSize="xs"
-              fontWeight="bold"
-              transform="rotate(5deg)"
-            >
-              <ThemeTag>FALOVESTORY</ThemeTag>
-            </Box>
-            <Link to={`/person/${maid.name}`}>
-              <VStack>
-                <Image
-                  src={maid.image}
-                  alt={maid.name}
-                  borderRadius="md"
-                  objectFit="cover"
-                  w="100%"
-                  h="500px"
-                  border="3px solid"
-                  borderColor="teal.50"
-                />
-                <Text fontWeight="bold" fontSize="lg" mt={3}>
-                  {maid.name}
-                </Text>
-                <Text fontSize="sm" color="gray.500">
-                  {maid.occupation}
-                </Text>
-                <Text fontSize="sm" color="teal.500">
-                  {maid.social}
-                </Text>
-                <Text fontSize="sm" mt={2} color="gray.600">
-                  {maid.relationship}
-                </Text>
-              </VStack>
-            </Link>
-          </MotionBox>
-        ))}
-      </Grid>
-
-      <Divider my={12} borderColor="teal.300" />
-
-      {/* Gallery */}
-      <Heading fontSize="3xl" textTransform="uppercase" mb={8} color="teal.600">
-        Our <ThemeTag>FALOVESTORY</ThemeTag> Gallery
-      </Heading>
-      <Text mb={8} fontSize="lg" color="gray.600">
-        Captured moments from our <ThemeTag>FALOVESTORY</ThemeTag>
-      </Text>
-
-      <Grid templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }} gap={7}>
-        {galleryImages.map((image) => (
-          <MotionBox
-            key={image.id}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            p={2}
-            bg="white"
-            borderRadius="2xl"
-            boxShadow="lg"
-            position="relative"
-          >
-            <Image src={image.src} alt={`Gallery ${image.id}`} borderRadius="md" objectFit="cover" w="100%" h="600px" />
-            <Box
-              position="absolute"
-              bottom="0"
-              left="0"
-              right="0"
-              bg="linear-gradient(transparent, rgba(0,0,0,0.7))"
-              p={4}
-              color="white"
-              textAlign="center"
-            >
-              <Text fontSize="sm">{image.caption}</Text>
-              <Text fontSize="xs" mt={1} opacity={0.8}>
-                <ThemeTag>FALOVESTORY</ThemeTag> moment
-              </Text>
-            </Box>
-          </MotionBox>
-        ))}
-      </Grid>
-
-      {/* Final CTA */}
-      <Box mt={16} mb={8} p={8} bg="teal.50" borderRadius="2xl">
-        <Heading fontSize="3xl" mb={4} color="teal.600">
-          Become Part of Our <ThemeTag>FALOVESTORY</ThemeTag>
+      <Box px={{ base: 4, md: 8 }}>
+        <Heading
+          fontSize={{ base: "2xl", md: "3xl" }}
+          textTransform="uppercase"
+          mb={{ base: 6, md: 8 }}
+          color="teal.600"
+        >
+          Supporting Our <ThemeTag>FALOVESTORY</ThemeTag>
         </Heading>
-        <Text fontSize="lg" mb={6} color="gray.600">
-          We can't wait to celebrate our special day with you!
+        <Text mb={{ base: 6, md: 8 }} fontSize={{ base: "md", md: "lg" }} color="gray.600">
+          The wonderful people who've been part of our <ThemeTag>FALOVESTORY</ThemeTag> journey
         </Text>
+
+        <Heading fontSize={{ base: "xl", md: "2xl" }} mb={{ base: 6, md: 8 }} color="teal.500">
+          GROOMSMEN
+        </Heading>
+        <Grid
+          templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }}
+          gap={{ base: 4, md: 6 }}
+          mb={{ base: 8, md: 12 }}
+        >
+          {people.groomsmen.map((man, index) => (
+            <MotionBox
+              key={index}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+              p={{ base: 3, md: 4 }}
+              bg="white"
+              borderRadius="xl"
+              boxShadow="md"
+              position="relative"
+            >
+              <Box
+                position="absolute"
+                top="-2"
+                left="-2"
+                bg="teal.500"
+                color="white"
+                px={2}
+                py={1}
+                borderRadius="md"
+                fontSize="xs"
+                fontWeight="bold"
+                transform="rotate(-5deg)"
+                display={{ base: "none", sm: "block" }}
+              >
+                <ThemeTag>FALOVESTORY</ThemeTag>
+              </Box>
+              <Link to={`/person/${man.name}`}>
+                <VStack spacing={3}>
+                  <Image
+                    src={man.image}
+                    alt={man.name}
+                    borderRadius="md"
+                    objectFit="cover"
+                    w="100%"
+                    h={personImageHeight}
+                    border="3px solid"
+                    borderColor="teal.50"
+                  />
+                  <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
+                    {man.name}
+                  </Text>
+                  <Text fontSize={{ base: "xs", md: "sm" }} color="gray.500">
+                    {man.occupation}
+                  </Text>
+                  <Text fontSize={{ base: "xs", md: "sm" }} color="teal.500">
+                    {man.social}
+                  </Text>
+                  <Text fontSize={{ base: "xs", md: "sm" }} mt={1} color="gray.600" noOfLines={3}>
+                    {man.relationship}
+                  </Text>
+                </VStack>
+              </Link>
+            </MotionBox>
+          ))}
+        </Grid>
+
+        <Divider my={{ base: 8, md: 12 }} borderColor="teal.300" />
+
+        {/* Bridesmaids */}
+        <Heading fontSize={{ base: "xl", md: "2xl" }} mb={{ base: 6, md: 8 }} color="teal.500">
+          BRIDESMAIDS
+        </Heading>
+        <Grid
+          templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }}
+          gap={{ base: 4, md: 6 }}
+          mb={{ base: 8, md: 12 }}
+        >
+          {people.bridesmaids.map((maid, index) => (
+            <MotionBox
+              key={index}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+              p={{ base: 3, md: 4 }}
+              bg="white"
+              borderRadius="xl"
+              boxShadow="md"
+              position="relative"
+            >
+              <Box
+                position="absolute"
+                top="-2"
+                right="-2"
+                bg="teal.500"
+                color="white"
+                px={2}
+                py={1}
+                borderRadius="md"
+                fontSize="xs"
+                fontWeight="bold"
+                transform="rotate(5deg)"
+                display={{ base: "none", sm: "block" }}
+              >
+                <ThemeTag>FALOVESTORY</ThemeTag>
+              </Box>
+              <Link to={`/person/${maid.name}`}>
+                <VStack spacing={3}>
+                  <Image
+                    src={maid.image}
+                    alt={maid.name}
+                    borderRadius="md"
+                    objectFit="cover"
+                    w="100%"
+                    h={personImageHeight}
+                    border="3px solid"
+                    borderColor="teal.50"
+                  />
+                  <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
+                    {maid.name}
+                  </Text>
+                  <Text fontSize={{ base: "xs", md: "sm" }} color="gray.500">
+                    {maid.occupation}
+                  </Text>
+                  <Text fontSize={{ base: "xs", md: "sm" }} color="teal.500">
+                    {maid.social}
+                  </Text>
+                  <Text fontSize={{ base: "xs", md: "sm" }} mt={1} color="gray.600" noOfLines={3}>
+                    {maid.relationship}
+                  </Text>
+                </VStack>
+              </Link>
+            </MotionBox>
+          ))}
+        </Grid>
+
+        <Divider my={{ base: 8, md: 12 }} borderColor="teal.300" />
+
+        {/* Gallery */}
+        <Heading
+          fontSize={{ base: "2xl", md: "3xl" }}
+          textTransform="uppercase"
+          mb={{ base: 6, md: 8 }}
+          color="teal.600"
+        >
+          Our <ThemeTag>FALOVESTORY</ThemeTag> Gallery
+        </Heading>
+        <Text mb={{ base: 6, md: 8 }} fontSize={{ base: "md", md: "lg" }} color="gray.600">
+          Captured moments from our <ThemeTag>FALOVESTORY</ThemeTag>
+        </Text>
+
+        <Grid
+          templateColumns={{
+            base: "1fr",
+            sm: "repeat(2, 1fr)",
+            md: "repeat(3, 1fr)",
+            lg: "repeat(4, 1fr)",
+          }}
+          gap={{ base: 4, md: 5, lg: 6 }}
+        >
+          {galleryImages.map((image) => (
+            <MotionBox
+              key={image.id}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+              bg="white"
+              borderRadius="xl"
+              boxShadow="md"
+              position="relative"
+              overflow="hidden"
+            >
+              <Image
+                src={image.src}
+                alt={`Gallery ${image.id}`}
+                borderRadius="md"
+                objectFit="cover"
+                w="100%"
+                h={galleryImageHeight}
+              />
+              <Box
+                position="absolute"
+                bottom="0"
+                left="0"
+                right="0"
+                bg="linear-gradient(transparent, rgba(0,0,0,0.7))"
+                p={3}
+                color="white"
+                textAlign="center"
+              >
+                <Text fontSize="sm">{image.caption}</Text>
+                <Text fontSize="xs" mt={1} opacity={0.8}>
+                  <ThemeTag>FALOVESTORY</ThemeTag> moment
+                </Text>
+              </Box>
+            </MotionBox>
+          ))}
+        </Grid>
+
+        {/* Final CTA */}
+        <Box mt={{ base: 10, md: 16 }} mb={8} p={{ base: 4, md: 6 }} bg="teal.50" borderRadius="2xl">
+          <Heading fontSize={{ base: "2xl", md: "3xl" }} mb={{ base: 3, md: 4 }} color="teal.600">
+            Become Part of Our <ThemeTag>FALOVESTORY</ThemeTag>
+          </Heading>
+          <Text fontSize={{ base: "md", md: "lg" }} mb={{ base: 4, md: 6 }} color="gray.600">
+            We can't wait to celebrate our special day with you!
+          </Text>
+        </Box>
       </Box>
     </Box>
   );
