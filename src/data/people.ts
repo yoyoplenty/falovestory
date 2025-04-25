@@ -1,10 +1,10 @@
 export const people = {
   groom: {
-    name: "John Doe",
+    name: "Akinkunmi Collins",
     image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745578560/collins_kyu5nd.jpg",
   },
   bride: {
-    name: "Jane Smith",
+    name: "Fatimah",
     image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745578560/fatimah_yueux2.jpg",
   },
   groomsmen: [
