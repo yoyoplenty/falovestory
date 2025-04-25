@@ -1,11 +1,11 @@
 export const people = {
   groom: {
     name: "John Doe",
-    image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745317358/IMG-20250422-WA0024_wlrmek.jpg",
+    image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745578560/collins_kyu5nd.jpg",
   },
   bride: {
     name: "Jane Smith",
-    image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745317357/IMG-20250422-WA0023_nxk8hz.jpg",
+    image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745578560/fatimah_yueux2.jpg",
   },
   groomsmen: [
     {
@@ -58,11 +58,25 @@ export const people = {
       image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745462982/yoyo_j9qwad.jpg",
     },
     {
+      name: "John Paul",
+      occupation: "Photographer/ Artist Manager",
+      social: "@Jaypee gallery",
+      relationship: "Jaypee gallery",
+      image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745578551/john-paul_qshpil.jpg",
+    },
+    {
       name: "Christopher",
       occupation: "Businessman",
       social: "@Successful_Omemma",
       relationship: "Friend to the Groom.",
       image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745460771/chris_numgdr.jpg",
+    },
+    {
+      name: "Tobi Idris",
+      occupation: "Gamer/bodybuilder ",
+      social: "@frosh007334",
+      relationship: "Friend to the Groom.",
+      image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745578550/tobi-idris_gksr25.jpg",
     },
   ],
   bridesmaids: [
@@ -100,6 +114,13 @@ export const people = {
       social: "@_____mideeeee",
       relationship: "Friend to the bride.",
       image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745460749/niniola_b21fkf.jpg",
+    },
+    {
+      name: "Oluchi",
+      occupation: "Lash Technician/Support Worker",
+      social: "@oluchi_x",
+      relationship: "Friend to the bride.",
+      image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745578698/oluchi_oglqt1.jpg",
     },
   ],
 };
