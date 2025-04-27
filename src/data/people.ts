@@ -76,7 +76,7 @@ export const people = {
       occupation: "Gamer/bodybuilder ",
       social: "@frosh007334",
       relationship: "Friend to the Groom.",
-      image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745578550/tobi-idris_gksr25.jpg",
+      image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745728477/idris-tobi_ezzz1u.jpg",
     },
   ],
   bridesmaids: [
