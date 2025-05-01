@@ -78,6 +78,13 @@ export const people = {
       relationship: "Friend to the Groom.",
       image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1745728477/idris-tobi_ezzz1u.jpg",
     },
+    {
+      name: "Azzez Waliu",
+      occupation: "Geologist",
+      social: "@_",
+      relationship: "Friend to the Groom.",
+      image: "https://res.cloudinary.com/yoyoplenty/image/upload/v1746096752/azeez_dpw44s.jpg",
+    },
   ],
   bridesmaids: [
     {
